@@ -19,7 +19,10 @@ stages{
     
 
     stage('sshtoansibleserver'){
-        sh 'ssh thakshala@192.168.43.34'
+        steps{
+         sh 'ssh thakshala@192.168.43.34'
+        }
+        
     }
 
     stage('Deploy via Ansible Server') {

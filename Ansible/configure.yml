@@ -1,0 +1,10 @@
+---
+- name: deploy_project
+  become: yes
+  hosts: work_group
+  tasks:
+    - name: deploy_frontend
+      command: docker compose up -d --build
+      args:
+        chdir: /home/thakshala/DeployPreoject
+      

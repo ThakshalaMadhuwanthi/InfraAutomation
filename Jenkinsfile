@@ -16,17 +16,26 @@ stages{
            url: 'git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git'
         }
     }
-    stage('containercreate'){
-        steps{
-            sh 'docker compose up -d --build'
-        }
+    
+
+    stage('sshtoansibleserver'){
+        sh 'ssh thakshala@192.168.43.34'
     }
 
-    stage('AnsibleDeploy'){
-        steps{
-            sh 'ansible-playbook -i Ansible/inventory Ansible/configure.yml'
-        }
+    stage('Deploy via Ansible Server') {
+    steps {
+        sh '''
+        ssh thakshala@192.168.43.34 "
+            if [ ! -d ~/DeployPreoject ]; then
+                git clone git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git ~/DeployPreoject
+            fi &&
+            cd ~/DeployPreoject &&
+            git pull origin main &&
+            ansible-playbook -i Ansible/inventory Ansible/configure.yml
+        "
+        '''
     }
+}
 
 
 }

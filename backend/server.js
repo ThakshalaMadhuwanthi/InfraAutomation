@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // 🔗 MongoDB Connection
-const MONGO_URL = "mongodb://localhost:27017/devopsDB";
+const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.connect(MONGO_URL)
     .then(() => console.log("MongoDB connected"))

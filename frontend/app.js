@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/message";
+const API_URL = "http://backend:5000/api/message";
 
 async function sendMessage() {
     const text = document.getElementById("msgInput").value;

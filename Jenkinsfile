@@ -24,11 +24,13 @@ stages{
     steps {
         sh '''
 ssh thakshala@192.168.43.34 << 'ENDSSH'
-if [ ! -d ~/DeployPreoject ]; then
-    git clone git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git ~/DeployPreoject
-fi
-cd ~/DeployPreoject
-git pull origin main
+REPO_DIR=~/Deploypreoject
+
+rm -rf "$REPO_DIR"
+git clone git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git "$REPO_DIR"
+cd "$REPO_DIR"
+git fetch origin main
+git reset --hard origin/main
 ansible-playbook -i Ansible/inventory Ansible/configure.yml
 ENDSSH
 '''

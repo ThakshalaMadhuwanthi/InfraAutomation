@@ -1,2 +1,2 @@
 [work_group]
-jenkins ansible_host=192.168.43.119 ansible_user=thakshala ansible_password=Abc1234   ansible_become_password=Abc1234 ansible_connection=ssh
+jenkins ansible_host=192.168.43.199 ansible_user=thakshala ansible_password=Abc1234   ansible_become_password=Abc1234 ansible_connection=ssh

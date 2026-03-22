@@ -1,7 +1,6 @@
 ---
 - name: deploy_project
   become: yes
-  become_user: thakshala
   hosts: work_group
   tasks:
 

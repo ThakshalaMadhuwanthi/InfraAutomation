@@ -13,8 +13,8 @@
         force: yes
         accept_hostkey: yes
 
-    - name: deploy_frontend
-      command: docker compose up -d --build
+    - name: deploy_project
+      command: docker-compose up -d --build
       args:
         chdir: /home/jenkins/DeployPreoject
       

@@ -1,5 +1,6 @@
 ---
 - name: deploy_project
+  become: yes
   hosts: work_group
   tasks:
 
@@ -13,7 +14,7 @@
         accept_hostkey: yes
 
     - name: deploy_project
-      command: docker compose up -d --build
+      command: /usr/bin/docker compose up -d --build
       args:
         chdir: /home/thakshala/DeployPreoject/
       

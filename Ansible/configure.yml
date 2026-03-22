@@ -14,7 +14,7 @@
         accept_hostkey: yes
 
     - name: deploy_project
-      command: /usr/bin/docker compose up -d --build
+      shell: docker compose up -d --build
       args:
         chdir: /home/thakshala/DeployPreoject/
       

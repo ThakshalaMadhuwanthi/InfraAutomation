@@ -19,32 +19,18 @@ This project demonstrates a full-stack Node.js + MongoDB app deployed using Dock
 
 ---
 
-## 📁 Project Structure
-
-
-DeployProject/
-├─ backend/ # Node.js backend API
-├─ frontend/ # HTML/CSS/JS frontend
-├─ docker-compose.yml
-├─ ansible/ # Ansible playbooks
-│ └─ deploy.yml
-└─ README.md
-
-
----
-
 ## ⚙ Setup
 
-### 1️⃣ Clone the repo
 ```bash
+1️⃣ Clone the repo
 git clone git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git
 cd DeployPreoject
+
 2️⃣ Configure Ansible Server
 Run on a VM (Oracle VirtualBox)
 Ensure user has sudo privileges
 Test connectivity:
 ansible all -m ping
-
 Important: Update the inventory file with the correct IP addresses of your deployment servers.
 
 3️⃣ Configure Jenkins Server
@@ -53,20 +39,18 @@ Install plugins: Docker, Git, NodeJS, Pipeline
 Expose Jenkins for GitHub Webhook using Ngrok:
 http://<ngrok-id>.ngrok-free.dev/github-webhook/
 Update your pipeline stage to set the Deploy server IP and SSH credentials correctly.
+
 4️⃣ Deploy with Docker Compose (Automated via CI/CD)
 
 When the GitHub webhook triggers Jenkins, it automatically runs the Ansible playbook to:
-
 Pull the latest code from GitHub
 Build Docker images for frontend and backend
 Deploy containers on the server
 
 You can also manually deploy using:
-
 sudo docker-compose up -d --build
 
 Access URLs after deployment:
-
 Frontend: http://<host-ip>:3000
 Backend API: http://<host-ip>:5000/api/message
 Mongo Express: http://<host-ip>:8081
@@ -77,6 +61,7 @@ Tip: app.js in the frontend must point to the correct backend IP (API_URL). When
 Push code to GitHub
 GitHub Webhook triggers Jenkins
 Jenkins executes Ansible playbook → builds & deploys Docker containers
+
 📦 Backend API Endpoints
 Method	Endpoint	Description
 POST	/api/message	Save a message to database

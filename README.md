@@ -20,6 +20,8 @@ This project demonstrates a full-stack Node.js + MongoDB app deployed using Dock
 ---
 
 ## 📁 Project Structure
+
+
 DeployProject/
 ├─ backend/ # Node.js backend API
 ├─ frontend/ # HTML/CSS/JS frontend
@@ -37,12 +39,13 @@ DeployProject/
 ```bash
 git clone git@github.com:ThakshalaMadhuwanthi/DeployPreoject.git
 cd DeployPreoject
-
 2️⃣ Configure Ansible Server
 Run on a VM (Oracle VirtualBox)
 Ensure user has sudo privileges
 Test connectivity:
-Important: Update the inventory file  with the correct IP addresses of your deployment servers.
+ansible all -m ping
+
+Important: Update the inventory file with the correct IP addresses of your deployment servers.
 
 3️⃣ Configure Jenkins Server
 Run Jenkins in Docker or VM
@@ -50,16 +53,16 @@ Install plugins: Docker, Git, NodeJS, Pipeline
 Expose Jenkins for GitHub Webhook using Ngrok:
 http://<ngrok-id>.ngrok-free.dev/github-webhook/
 Update your pipeline stage to set the Deploy server IP and SSH credentials correctly.
+4️⃣ Deploy with Docker Compose (Automated via CI/CD)
 
-### 4️⃣ Deploy with Docker Compose (Automated via CI/CD)
-When the GitHub webhook triggers Jenkins, it automatically runs the Ansible playbook to:  
-1. Pull the latest code from GitHub  
-2. Build Docker images for frontend and backend  
-3. Deploy containers on the server  
+When the GitHub webhook triggers Jenkins, it automatically runs the Ansible playbook to:
+
+Pull the latest code from GitHub
+Build Docker images for frontend and backend
+Deploy containers on the server
 
 You can also manually deploy using:
 
-```bash
 sudo docker-compose up -d --build
 
 Access URLs after deployment:
@@ -74,7 +77,6 @@ Tip: app.js in the frontend must point to the correct backend IP (API_URL). When
 Push code to GitHub
 GitHub Webhook triggers Jenkins
 Jenkins executes Ansible playbook → builds & deploys Docker containers
-
 📦 Backend API Endpoints
 Method	Endpoint	Description
 POST	/api/message	Save a message to database
@@ -86,9 +88,3 @@ Verify MONGO_URI in docker-compose.yml matches your MongoDB credentials and DB n
 Jenkins Docker access:
 sudo usermod -aG docker jenkins
 Update inventory file and frontend app.js URL according to your deployment IPs
-
-📖 References
-Docker Docs
-Ansible Docs
-Jenkins Docs
-Mongo Express GitHub
